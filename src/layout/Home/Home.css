@@ -1,0 +1,165 @@
+.HeaderCon {
+    height: 720px;
+    background-image: url(../../asset/background.jpeg);
+    box-shadow: inset 0 0 0 2000px rgba(0,0,0,0.5);
+    background-size: cover;
+    border-bottom: 8px solid #222;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 4rem;
+}
+ul {
+    display: flex;
+}
+ul li {
+    list-style: none;
+    margin: 0rem 2rem;
+}
+svg {
+    fill: red;
+    width: 150px;
+}
+.Main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 600px;
+    text-align: center;
+}
+.HeaderText h1 {
+    font-size: 4rem;
+    color: #fff;
+}
+.HeaderText h3 {
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: normal;
+    margin-top: 1rem;
+}
+.HeaderText p {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    font-weight: normal;
+}
+.HeaderInput input {
+    padding: 1.5rem;
+    width: 500px;
+}
+.HeaderInput button {
+    padding: 20px 1.5rem;
+    position: relative;
+    top: 5px;
+    color: #fff;
+    background: #e50914;
+    width: 200px;
+    border: none;
+    font-size: 1.5rem;
+}
+/* Enjoy */
+section {
+    background: #000;
+    display: flex;
+    justify-content: space-between;
+    height: 500px;
+    color: #fff;
+    padding: 5rem 15rem;
+    border-bottom: 8px solid #222;
+}
+.EnjoyCon {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.EnjoyText h3 {
+    font-size: 3rem;
+    color: #fff;
+}
+.EnjoyText p {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-top: 1rem;
+}
+.EnjoyTv {
+    position: relative;
+}
+/* download */
+.DownloadCon {
+    display: flex;
+    justify-content: space-between;
+    background: #000;
+    padding: 5rem 15rem;
+    color: #fff;
+    width: 100%;
+    border-bottom: 8px solid #222;
+}
+.DownloadPic {
+    position: relative;
+}
+.DownloadBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,100%);
+    border: 2px solid hsla(0,0%,100%,.25);
+    border-radius: 10px;
+    background: #000;
+    display: flex;
+    padding: 0.5rem;
+    width: 60%;
+    height: 100px;
+    justify-content: space-between;
+}
+.DownloadText {
+    width: 100%;
+    padding-top: 140px;
+}
+.DownloadText h3 {
+    font-size: 3rem;
+}
+.DownloadText p {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+/* Watch */
+.WatchCon {
+    display: flex;
+    justify-content: space-between;
+    background: #000;
+    color: #fff;
+    padding: 5rem 15rem;
+    border-bottom: 8px solid #222;
+}
+.WatchCon h3 {
+    font-size: 3rem;
+}
+.WatchCon p {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+/* Kid */
+.KidCon {
+    display: flex;
+    justify-content: space-between;
+    background: #000;
+    color: #fff;
+    padding: 5rem 15rem;
+}
+.KidCon img {
+    width: 100%;
+
+}
+.KidText {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.KidText h3 {
+ font-size: 3rem;
+}
+.KidText p {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
