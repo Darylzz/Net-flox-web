@@ -1,0 +1,37 @@
+.RegisterNav {
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+}
+.RegisterBox {
+    height: 680px;
+    width: 100wh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.RegisterInput {
+    height: 454px;
+    width: 440px;
+}
+.RegisterInput p {
+    padding-top: 1rem;
+}
+.RegisterInput input[type=text] {
+    padding: 15px 15px ;
+    width: 90%;
+}
+.RegisterInput input {
+    margin-top: 1.2rem;
+    border-radius: 2px;
+    border: 1px solid #222;
+}
+.RegisterInput button {
+    padding: 15px 15px;
+    width: 90%;
+    background-color: #e50914;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    margin-top: 1.5rem;
+}
