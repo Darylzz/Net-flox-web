@@ -1,6 +1,42 @@
 import "./Register.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import {toast} from "react-toastify"
+import validateRegister from "../../validator/validate-register";
+import * as authApi from "../../api/auth-api"
 export default function Register() {
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+    confirmPassword: ""
+  });
+  const [error,setError] = useState({})
+
+  const navigate = useNavigate()
+
+  const handleChange = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmitForm = async (e) => {
+    try {
+      e.preventDefault();
+      const result = validateRegister(input)
+      if (result) {
+        setError(result)
+      }else {
+        setError({})
+        await authApi.register(input)
+        setInput({})
+        toast.success("Success register, please login")
+        navigate("/login")
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error(err.response?.data.message)
+    }
+  };
+
   return (
     <div>
       <div className="RegisterNav">
@@ -18,20 +54,48 @@ export default function Register() {
             ></path>
           </g>
         </svg>
-        <Link style={{color: "#333", textDecoration: "none", marginTop: "8px", fontSize: "18px", fontWeight: "bold"}} to="/login">Sign In</Link>
+        <Link
+          style={{
+            color: "#333",
+            textDecoration: "none",
+            marginTop: "8px",
+            fontSize: "18px",
+            fontWeight: "bold",
+          }}
+          to="/login"
+        >
+          Sign In
+        </Link>
       </div>
       <hr />
       <div className="RegisterBox">
         <div className="RegisterInput">
-            <h1>Welcome!<br />
-            Joining Netflix is easy.</h1>
-            <p>Enter your password and you'll be watching in no <br />
-            time.</p>
-            <p>Email</p>
-            <span>z@hotmail.com</span><br />
-            <input type="text" placeholder="Enter your password" /><br />
-            <input type="text" placeholder="Confirm your password" /><br />
+          <h1>
+            Welcome!
+            <br />
+            Joining Netflix is easy.
+          </h1>
+          <p>
+            Enter your password and you'll be watching in no <br />
+            time.
+          </p>
+          <form onSubmit={handleSubmitForm}>
+          <p>Email</p>
+          <input type="text" placeholder="Enter your Email" name="email" value={input.email} onChange={handleChange} error={error.email} />
+          <br />
+            <input
+              type="text"
+              placeholder="Enter your password"
+              name="password"
+              value={input.password}
+              onChange={handleChange}
+              error={error.password}
+            />
+            <br />
+            <input type="text" placeholder="Confirm your password" name="confirmPassword" value={input.confirmPassword} onChange={handleChange} error={error.confirmPassword}/>
+            <br />
             <button>Next</button>
+          </form>
         </div>
       </div>
     </div>
