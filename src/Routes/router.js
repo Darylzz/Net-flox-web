@@ -5,7 +5,7 @@ import SignIn from "../layout/Sign in/SignIn"
 import RedirectIfAuthenticate from "../auth/RedirectIfAuthenticate"
 import Profile from "../layout/Profile/Profile"
 import ProtectedRoute from "../auth/ProtectedRoute"
-
+ 
 const router = createBrowserRouter([
     {
         path: "/",
@@ -30,7 +30,8 @@ const router = createBrowserRouter([
                 <Profile />
             </ProtectedRoute>
         ),
-    }
+    },
+
 ])
 
 export default function Router() {
