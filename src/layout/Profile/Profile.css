@@ -1,0 +1,90 @@
+.ProfileCon {
+    height: 100vh;
+    width: 100vw;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ProfileText {
+    margin-top: 200px;
+    color: #fff;
+}
+.ProfileSelector {
+    margin-top: 8rem;
+    display: flex;
+    gap: 10px;
+    text-align: center;
+}
+.ProfileSelector1 {
+    color: #fff;
+}
+.ProfileSelector1 p {
+    margin-top: 10px;
+}
+.ProfileSelector2 {
+    color: #fff;
+}
+.ProfileSelector2 p {
+    margin-top: 10px;
+}
+.ProfileSelector3 {
+    color: #fff;
+}
+.ProfileSelector3 p {
+    margin-top: 10px;
+}
+.ProfileBox1 {
+    width: 144px;
+    height: 125px;
+    background: rgb(147, 143, 143);
+    border-radius: 4px;
+}
+.ProfileBox2 {
+    width: 144px;
+    height: 125px;
+    background: rgb(147, 143, 143);
+    border-radius: 4px;
+
+}
+.ProfileBox3 {
+    width: 144px;
+    height: 125px;
+    background: rgb(147, 143, 143);
+    border-radius: 4px;
+
+}
+.AddProfile {
+    color: #fff;
+}
+.AddProfile p {
+    margin-top: 10px;
+}
+.AddProfileBox {
+    width: 144px;
+    height: 125px;
+    background: rgb(147, 143, 143);
+    border-radius: 4px;
+
+}
+.AddProfileBox img {
+    width: 144px;
+    height: 125px;
+}
+.ProfileManageButton {
+    margin-top: 5rem;
+    display: flex;
+    gap: 30px;
+}
+.ProfileButton button {
+    padding: 8px 50px;
+    color: #fff;
+    background: transparent;
+    border: 1px solid #fff;
+}
+.ProfileLogout button {
+    padding: 9.5px 50px;
+    color: #fff;
+    background: red;
+    border: none;
+}

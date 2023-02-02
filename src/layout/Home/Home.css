@@ -44,19 +44,8 @@ svg {
     margin-top: 1.5rem;
     font-weight: normal;
 }
-.HeaderInput input {
-    padding: 1.5rem;
-    width: 500px;
-}
-.HeaderInput button {
-    padding: 20px 1.5rem;
-    position: relative;
-    top: 5px;
-    color: #fff;
-    background: #e50914;
-    width: 200px;
-    border: none;
-    font-size: 1.5rem;
+.HeaderInput {
+    margin-top: 2rem;
 }
 /* Enjoy */
 section {

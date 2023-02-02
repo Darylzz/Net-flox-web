@@ -1,6 +1,26 @@
 import "./SignIn.css";
-import {Link} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import useAuth from "../../hook/useAuth";
+import { toast } from "react-toastify";
 export default function SignIn() {
+  const [inputEmail, setInputEmail] = useState("")
+  const [inputPassword, setInputPassword] = useState("")
+
+  const navigate = useNavigate()
+
+  const  {login}  = useAuth();
+  const handleSubmitForm = async (e) => {
+    try {
+      e.preventDefault();
+      await login( inputEmail, inputPassword );
+      toast.success("Success login");
+    } catch (err) {
+      console.log(err);
+      toast.err(err.response?.data.message);
+    }
+  };
+
   return (
     <div className="SignInCon">
       <nav>
@@ -24,20 +44,42 @@ export default function SignIn() {
           <div className="SignInText">
             <h1>Sign in</h1>
           </div>
-          <div className="SignInInput">
-            <input type="text" placeholder="Email" /><br />
-            <input type="text" placeHolder="Password" />
-          </div>
-          <div className="SignInButton">
-            <button type="submit">Sign In</button>
-          </div>
-          <div className="SignInCheckbox">
-            <div>
-            <input type="checkbox" />
-            <label>Remember me</label>
+          <form onSubmit={handleSubmitForm}>
+            <div className="SignInInput">
+              <input
+                type="text"
+                placeholder="Email"
+                value={inputEmail}
+                onChange={ e => setInputEmail(e.target.value)}
+              />
+              <br />
+              <input
+                type="text"
+                placeHolder="Password"
+                value={inputPassword}
+                onChange={e=> setInputPassword(e.target.value)}
+              />
             </div>
-            <Link style={{color: "#b3b3b3", fontSize: "13px", textDecoration: "none"}} to="" >Need help?</Link>
-          </div>
+            <div className="SignInButton">
+              <button type="submit">Sign In</button>
+            </div>
+            <div className="SignInCheckbox">
+              <div>
+                <input type="checkbox" />
+                <label>Remember me</label>
+              </div>
+              <Link
+                style={{
+                  color: "#b3b3b3",
+                  fontSize: "13px",
+                  textDecoration: "none",
+                }}
+                to=""
+              >
+                Need help?
+              </Link>
+            </div>
+          </form>
         </div>
       </div>
     </div>

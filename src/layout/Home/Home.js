@@ -6,6 +6,7 @@ import boxShot from "../../asset/boxshot.png";
 import downloadIcon from "../../asset/download-icon.gif";
 import kidImg from "../../asset/kid.png"
 export default function Home() {
+
   return (
     <div className="HeaderCon">
       <nav>
@@ -69,8 +70,7 @@ export default function Home() {
             membership.
           </p>
           <div className="HeaderInput">
-            <input type="email" placeholder="Email Address" />
-            <button type="submit">Get Started</button>
+              <Link to="/register" style={{padding: "15px 18rem", borderRadius: "4px", background: "red", color: "#fff", textDecoration: "none"}} >Register</Link>
           </div>
         </div>
       </div>
@@ -92,7 +92,7 @@ export default function Home() {
               alt=""
             />
             <video
-              autoplay
+              autoPlay
               playsInline
               muted
               loop
