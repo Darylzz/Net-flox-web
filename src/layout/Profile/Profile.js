@@ -1,11 +1,23 @@
 import "./Profile.css"
-import {Link} from "react-router-dom"
 import iconPlus from "../../asset/plus-button.png"
 import useAuth from "../../hook/useAuth"
-import userAvatar from "../../asset/user-avatar.png"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import ProfileUser from "./ProfileUser"
 import Modal from "./Modal"
+import * as profileApi from "../../api/profile-api"
 export default function Profile() {
+    const [profileUser,setProfileUser] = useState([])
+
+    useEffect(() => {
+        const fetchProfileUser = async () => {
+            const res = await profileApi.getProfileUser()
+            setProfileUser(res.data.profile)
+        }
+        fetchProfileUser()
+    },[])
+
+    console.log(profileUser)
+
     const { logout } = useAuth()
     const [open,setOpen] = useState(false)
     return (
@@ -15,34 +27,15 @@ export default function Profile() {
                 <h1>Who's Watching?</h1>
             </div>
             <div className="ProfileSelector">
-                <div className="ProfileSelector1">
-                    <div className="ProfileBox1">
-                        <Link to="/">
-                        <img src={userAvatar} alt=""/>
-                        </Link>
-                    </div>
-                    <p>Name</p>
-                </div>
-                <div className="ProfileSelector2">
-                    <div className="ProfileBox2">
-                    <img src={userAvatar} alt=""/>
-                    </div>
-                    <p>Name</p>
-                </div>
-                <div className="ProfileSelector3">
-                    <div className="ProfileBox3">
-                    <img src={userAvatar} alt=""/>
-                    </div>
-                    <p>Name</p>
-                </div>
-                <div className="AddProfile">
+                {profileUser?.map(el=> <ProfileUser key={el.id} id={el.id} image={el.profileImage} name={el.profileName}/>)}
+                {profileUser.length <= 3 ? "" : <div className="AddProfile">
                     <div className="AddProfileBox">
                         <button onClick={() => setOpen(true)}>
                         <img src={iconPlus} alt="" />
                         </button>
                     </div>
                     <p>Add Profile</p>
-                </div>
+                </div>}
                         <Modal open={open} onClose={() => setOpen(false)}></Modal>
             </div>
             <div className="ProfileManageButton">

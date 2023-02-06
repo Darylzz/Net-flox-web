@@ -1,7 +1,18 @@
 import "./UIProfile.css"
 import {Link} from "react-router-dom"
 import profileImg from "../../asset/user-avatar.png"
+import { useEffect, useState } from "react"
+import * as profileApi from "../../api/profile-api"
 export default function UIProfile() {
+  const [UIProfileUser, setUIProfileUser] = useState([])
+
+  useEffect(() => {
+    const fetchUIProfileUser = async () => {
+      const res = await profileApi.getProfileById()
+      setUIProfileUser(res.data.profile)
+    }
+    fetchUIProfileUser()
+  },[])
     return (
         <div className="UIProfileCon">
             <nav>
@@ -32,7 +43,7 @@ export default function UIProfile() {
                 <button></button>
                 <div className="UIProfileButton">
                     <button>
-                        <img src={profileImg} alt="" />
+                      {UIProfileUser?.map(el => <img src={el.profileImage} alt="" />)}
                     </button>
                 </div>
             </div>

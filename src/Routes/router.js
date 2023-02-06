@@ -5,6 +5,7 @@ import SignIn from "../layout/Sign in/SignIn"
 import RedirectIfAuthenticate from "../auth/RedirectIfAuthenticate"
 import Profile from "../layout/Profile/Profile"
 import ProtectedRoute from "../auth/ProtectedRoute"
+import UIProfile from "../layout/UIProfile/UIProfile"
  
 const router = createBrowserRouter([
     {
@@ -31,6 +32,14 @@ const router = createBrowserRouter([
             </ProtectedRoute>
         ),
     },
+    {
+        path: "/profile/:profileId",
+        element: (
+            <ProtectedRoute>
+                <UIProfile />
+            </ProtectedRoute>
+        )
+    }
 
 ])
 

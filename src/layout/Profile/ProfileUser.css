@@ -1,0 +1,38 @@
+.ProfileSelector1 {
+    color: #fff;
+}
+.ProfileSelector1 p {
+    margin-top: 10px;
+}
+.ProfileSelector2 {
+    color: #fff;
+}
+.ProfileSelector2 p {
+    margin-top: 10px;
+}
+.ProfileSelector3 {
+    color: #fff;
+}
+.ProfileSelector3 p {
+    margin-top: 10px;
+}
+.ProfileBox1 {
+    width: 144px;
+    height: 125px;
+    background: rgb(147, 143, 143);
+    border-radius: 4px;
+}
+.ProfileBox2 {
+    width: 144px;
+    height: 125px;
+    background: rgb(147, 143, 143);
+    border-radius: 4px;
+
+}
+.ProfileBox3 {
+    width: 144px;
+    height: 125px;
+    background: rgb(147, 143, 143);
+    border-radius: 4px;
+
+}

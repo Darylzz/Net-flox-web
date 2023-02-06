@@ -24,6 +24,7 @@ export default function Modal({ open, onClose }) {
       name: "",
       file: "",
     });
+    navigate(0)
     onClose()
   };
 
