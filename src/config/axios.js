@@ -6,7 +6,7 @@ axios.defaults.baseURL = "http://localhost:8000";
 axios.interceptors.request.use(
   (config) => {
     if (getAccessToken()) {
-      config.headers.authorization = `Bearer${getAccessToken()}`;
+      config.headers.authorization = `Bearer ${getAccessToken()}`;
     }
     return config;
   },

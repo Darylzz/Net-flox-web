@@ -17,7 +17,7 @@ export default function SignIn() {
       toast.success("Success login");
     } catch (err) {
       console.log(err);
-      toast.err(err.response?.data.message);
+      toast.error(err.response?.data.message);
     }
   };
 

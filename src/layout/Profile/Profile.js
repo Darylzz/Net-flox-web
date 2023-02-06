@@ -3,9 +3,13 @@ import {Link} from "react-router-dom"
 import iconPlus from "../../asset/plus-button.png"
 import useAuth from "../../hook/useAuth"
 import userAvatar from "../../asset/user-avatar.png"
+import { useState } from "react"
+import Modal from "./Modal"
 export default function Profile() {
     const { logout } = useAuth()
+    const [open,setOpen] = useState(false)
     return (
+        <div>
         <div className="ProfileCon">
             <div className="ProfileText">
                 <h1>Who's Watching?</h1>
@@ -33,10 +37,13 @@ export default function Profile() {
                 </div>
                 <div className="AddProfile">
                     <div className="AddProfileBox">
+                        <button onClick={() => setOpen(true)}>
                         <img src={iconPlus} alt="" />
+                        </button>
                     </div>
                     <p>Add Profile</p>
                 </div>
+                        <Modal open={open} onClose={() => setOpen(false)}></Modal>
             </div>
             <div className="ProfileManageButton">
             <div className="ProfileButton">
@@ -47,5 +54,6 @@ export default function Profile() {
             </div>
         </div>
             </div>
+        </div>
     )
 }

@@ -1,0 +1,59 @@
+.ProfileModal {
+    height: 600px;
+    width: 60%;
+    top: 18%;
+    left: 20%;
+    background: #000;
+    visibility: visible;
+    transition: all 1.5s ease-out;
+}
+.transition * {
+    transition: all 3s ease-out;
+}
+.fixed{
+    position: fixed;
+}
+.d-none{
+    visibility: hidden;
+    
+}
+.ProfileModalInputText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem;
+}
+.ProfileModalInputText h1 {
+    color: #fff;
+}
+.ProfileModalInput {
+    padding: 1rem;
+}
+.ProfileModalInput input {
+    margin-left: 50px;
+    margin-bottom: 1.5rem;
+}
+.ProfileModalInput input[type=text] {
+    padding: 1rem 4rem;
+    border-radius: 4px;
+    border: none;
+    color: #fff;
+    background: rgb(93, 88, 88);
+}
+.ProfileModalInput ::placeholder {
+    color: #fff
+}
+.ProfileModalInputButton {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+.ProfileModalInputButton button {
+    padding: 15px 2rem;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    background: transparent;
+    color: #fff;
+}
