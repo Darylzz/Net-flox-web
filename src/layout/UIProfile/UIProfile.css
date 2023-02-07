@@ -5,13 +5,168 @@
 }
 .UIProfileNavLeft {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 .UIProfileButton {
-    width: 144px;
-    height: 125px;
+    width: 35px;
+    height: 26px;
 }
 .UIProfileButton button img {
-    width: 144px;
-    height: 125px;
+    width: 35px;
+    height: 26px;
+    color: #fff;
+}
+.UIProfileNavRight {
+    display: flex;
+    gap: 15px;
+}
+.UIProfileNavRight button {
+    width: 35px;
+    height: 26px;
+    color: #fff;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.UIProfileMain {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.UIProfileMain2 {
+    height: 280px;
+    width: 100%;
+    border: 1px solid red;
+}
+.UIProfileMain3 {
+    height: 560px;
+    width: 100%;
+    border: 1px solid red;
+}
+.UIProfileMain2 h3 {
+    color: #fff;
+    padding:  1rem 4rem;
+}
+.UIProfileMain3 h3 {
+    color: #fff;
+    padding:  1rem 4rem;
+}
+.TopPickMain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+.WatchListMain {
+    display: flex;
+    justify-content: space-evenly;
+}
+.WatchList1 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.WatchList2 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.WatchList3 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.WatchList4 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.WatchList5 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.TrendingNowMain {
+    display: flex;
+    justify-content: space-evenly;
+}
+.TrendingNow1 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.TrendingNow2 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.TrendingNow3 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.TrendingNow4 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.TrendingNow5 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.TrendingNow6 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.TrendingNow7 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.TrendingNow8 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.TrendingNow9 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.TrendingNow10 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.AllMovieMain {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 3rem;
+}
+.AllMovie1 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.AllMovie2 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.AllMovie3 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.AllMovie4 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
+}
+.AllMovie5 {
+    height: 180px;
+    width: 300px;
+    border: 1px solid red;
 }

@@ -33,8 +33,10 @@ export default function ModalManage({ openManageModal, onClose, id }) {
     onClose();
   };
 
-  const handleClickButtonDelete = async (e) => {
+  const handleClickButtonDelete = async () => {
     await profileApi.deleteProfileById(id)
+    navigate(0)
+    onClose()
   }
 
   return (
@@ -66,7 +68,7 @@ export default function ModalManage({ openManageModal, onClose, id }) {
           <div className="ModalManageInputButton">
             <button type="submit">Save</button>
             <button onClick={onClose}>Cancel</button>
-            <button type="button">Delete</button>
+            <button type="button" onClick={handleClickButtonDelete}>Delete</button>
           </div>
         </form>
       </div>

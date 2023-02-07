@@ -12,11 +12,11 @@ export default function Profile() {
         const fetchProfileUser = async () => {
             const res = await profileApi.getProfileUser()
             setProfileUser(res.data.profile)
+            console.log(res);
         }
         fetchProfileUser()
     },[])
 
-    console.log(profileUser)
 
     const { logout } = useAuth()
     const [openModal,setOpenModal] = useState(false)
