@@ -1,6 +1,6 @@
 import * as authApi from "../api/auth-api"
 import jwtDecode from "jwt-decode"
-import { createContext, useEffect, useState } from "react"
+import { createContext, useState } from "react"
 import { getAccessToken, removeAccessToken, setAccessToken } from "../util/local-storage"
 
 export const AuthContext = createContext()

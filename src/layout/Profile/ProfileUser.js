@@ -1,7 +1,14 @@
+import "@fortawesome/fontawesome-free/css/all.css";
 import "./ProfileUser.css";
 import { Link } from "react-router-dom";
-export default function ProfileUser({ image, name, id }) {
-  console.log(process.env.REACT_APP_URL + image);
+import Modal from "./Modal"
+import { useState } from "react";
+import ModalManage from "./ModalManage"
+export default function ProfileUser({ image, name, id, openManage }) {
+
+    const [openModal, setOpenModal] = useState(false)
+    const [openManageModal, setOpenManageModal] = useState(false)
+
   return (
     <>
       <div className="ProfileSelector1">
@@ -11,7 +18,15 @@ export default function ProfileUser({ image, name, id }) {
           </Link>
         </div>
         <p>{name}</p>
+        {openManage && <button onClick={() => setOpenManageModal(true)}>
+          <i class="fa-solid fa-pencil"></i>
+        </button>}
+        <Modal open={openModal} onClose={() => setOpenModal(false)} />
+        <ModalManage key={id} id={id} openManageModal={openManageModal} onClose={() => setOpenManageModal(false)} />
       </div>
     </>
+    // <>
+
+    // </>
   );
 }

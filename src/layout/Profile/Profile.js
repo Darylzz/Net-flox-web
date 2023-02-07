@@ -19,7 +19,8 @@ export default function Profile() {
     console.log(profileUser)
 
     const { logout } = useAuth()
-    const [open,setOpen] = useState(false)
+    const [openModal,setOpenModal] = useState(false)
+    const [openManage, setOpenManage] = useState(false)
     return (
         <div>
         <div className="ProfileCon">
@@ -27,20 +28,20 @@ export default function Profile() {
                 <h1>Who's Watching?</h1>
             </div>
             <div className="ProfileSelector">
-                {profileUser?.map(el=> <ProfileUser key={el.id} id={el.id} image={el.profileImage} name={el.profileName}/>)}
-                {profileUser.length <= 3 ? "" : <div className="AddProfile">
+                {profileUser?.map(el=> <ProfileUser openManage={openManage} key={el.id} id={el.id} image={el.profileImage} name={el.profileName}/>)}
+                {profileUser.length >= 3? "" : <div className="AddProfile">
                     <div className="AddProfileBox">
-                        <button onClick={() => setOpen(true)}>
+                        <button onClick={() => setOpenModal(true)}>
                         <img src={iconPlus} alt="" />
                         </button>
                     </div>
                     <p>Add Profile</p>
                 </div>}
-                        <Modal open={open} onClose={() => setOpen(false)}></Modal>
+                        <Modal openModal={openModal} onClose={() => setOpenModal(false)}></Modal>
             </div>
             <div className="ProfileManageButton">
             <div className="ProfileButton">
-                <button>Manage Profiles</button>
+                <button onClick={() => setOpenManage(!openManage)}>Manage Profiles</button>
             </div>
             <div className="ProfileLogout">
                 <button onClick={logout}>Logout</button>

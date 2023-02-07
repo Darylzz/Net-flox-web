@@ -1,6 +1,5 @@
 import "./UIProfile.css"
 import {Link} from "react-router-dom"
-import profileImg from "../../asset/user-avatar.png"
 import { useEffect, useState } from "react"
 import * as profileApi from "../../api/profile-api"
 export default function UIProfile() {

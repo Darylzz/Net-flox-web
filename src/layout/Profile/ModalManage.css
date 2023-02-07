@@ -1,0 +1,59 @@
+.ModalManage {
+    height: 600px;
+    width: 60%;
+    top: 18%;
+    left: 20%;
+    background: #000;
+    visibility: visible;
+    transition: all 1.5s ease-out;
+}
+.transition * {
+    transition: all 3s ease-out;
+}
+.fixed{
+    position: fixed;
+}
+.d-none{
+    visibility: hidden;
+    
+}
+.ModalManageInputText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem;
+}
+.ModalManageInputText h1 {
+    color: #fff;
+}
+.ModalManageInput {
+    padding: 1rem;
+}
+.ModalManageInput input {
+    margin-left: 50px;
+    margin-bottom: 1.5rem;
+}
+.ModalManageInput input[type=text] {
+    padding: 1rem 4rem;
+    border-radius: 4px;
+    border: none;
+    color: #fff;
+    background: rgb(93, 88, 88);
+}
+.ModalManageInput ::placeholder {
+    color: #fff
+}
+.ModalManageInputButton {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+.ModalManageInputButton button {
+    padding: 15px 2rem;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    background: transparent;
+    color: #fff;
+}

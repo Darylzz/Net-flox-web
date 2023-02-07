@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "./Modal.css";
+import "./Modal.css"
 import * as profileApi from "../../api/profile-api";
 import { useNavigate } from "react-router-dom";
-export default function Modal({ open, onClose }) {
+export default function Modal({ openModal, onClose }) {
 
     const navigate = useNavigate()
     
@@ -15,10 +15,10 @@ export default function Modal({ open, onClose }) {
   };
 
   const handleSubmitForm = async (e) => {
+    e.preventDefault();
     const formData = new FormData();
     formData.append("profileImage", profileInput.file);
     formData.append("title", profileInput.name);
-    e.preventDefault();
     await profileApi.createProfile(formData);
     setProfileInput({
       name: "",
@@ -30,7 +30,7 @@ export default function Modal({ open, onClose }) {
 
   return (
     <div //style={{display: open? "block" : "none"}}
-      className={`fixed ${open ? "ProfileModal transition" : "d-none"}`}
+      className={`fixed ${openModal ? "ProfileModal transition" : "d-none"}`}
     >
       <div className="ProfileModalInputText">
         <h1>Edit Profile</h1>
@@ -62,8 +62,8 @@ export default function Modal({ open, onClose }) {
           <br />
           <div className="ProfileModalInputButton">
             <button type="submit">Save</button>
-            <button onClick={onClose}>Cancel</button>
-            <button>Delete</button>
+            <button type="button" onClick={onClose}>Cancel</button>
+            <button type="button">Delete</button>
           </div>
         </form>
       </div>
