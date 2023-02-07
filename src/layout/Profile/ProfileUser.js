@@ -28,8 +28,5 @@ export default function ProfileUser({ image, name, id, openManage }) {
       </div>}
 
     </>
-    // <>
-
-    // </>
   );
 }
