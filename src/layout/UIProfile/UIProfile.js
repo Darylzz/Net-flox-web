@@ -110,7 +110,6 @@ export default function UIProfile() {
         <div className="UIProfileMain2">
           <h3>Watch list</h3>
           <div className="WatchListMain">
-            {allMovie?.map(el => <Movie key={el.id} id={el.id} image={el.moviePic} />)}
             
             <div className="WatchList2"></div>
             <div className="WatchList3"></div>
@@ -121,18 +120,9 @@ export default function UIProfile() {
         <div className="UIProfileMain3">
           <h3>All Movie</h3>
           <div className="TrendingNowMain">
-            <div className="TrendingNow1"></div>
-            <div className="TrendingNow2"></div>
-            <div className="TrendingNow3"></div>
-            <div className="TrendingNow4"></div>
-            <div className="TrendingNow5"></div>
+          {allMovie?.map(el => <Movie key={el.id} id={el.id} image={el.moviePic} name={el.movieName} />)}
           </div>
           <div className="AllMovieMain">
-            <div className="AllMovie1"></div>
-            <div className="AllMovie2"></div>
-            <div className="AllMovie3"></div>
-            <div className="AllMovie4"></div>
-            <div className="AllMovie5"></div>
           </div>
         </div>
       </div>

@@ -59,7 +59,8 @@
 }
 .WatchListMain {
     display: flex;
-    justify-content: space-evenly;
+    gap: 80px;
+    padding-left: 8.3rem;
 }
 .WatchList1 {
     height: 180px;
@@ -88,7 +89,9 @@
 }
 .TrendingNowMain {
     display: flex;
-    justify-content: space-evenly;
+    padding-left: 8.3rem;
+    gap: 80px;
+    flex-wrap: wrap;
 }
 .TrendingNow1 {
     height: 180px;
