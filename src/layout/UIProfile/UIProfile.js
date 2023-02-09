@@ -38,32 +38,16 @@ export default function UIProfile() {
   useEffect(() => {
     const fetchWatchListById = async () => {
       const res = await watchListApi.findWatchListByProfileId(profileId);
-      // console.log(res);
       setWatchListMovie(res.data.watchList);
-      // console.log(res.data.watchList.id)
     };
     fetchWatchListById();
   }, [watchListMovie.length]);
 
-  // const handleClickDeleteWatchList = async () => {
   const handleClickDeleteWatchList = async (deleteId, profileId) => {
-    // //---------
-    // const newWatchList = watchListMovie.filter((el) => el.id !== deleteId);
-    // console.log(newWatchList);
-    //---------
     const res = await watchListApi.deleteWatchList(deleteId, profileId);
-    // console.log(res.data.watchListId);
     navigate(0)
   };  
 
-  // useEffect(() => {
-  //   const addWatchList = async () => {
-  //     const res = await watchListApi.addWatchList(profileId);
-  //     console.log(res);
-  //     setAddWatchList(res.data.watchList.watchListId);
-  //   };
-  //   addWatchList();
-  // }, []);
 
   return (
     <>
