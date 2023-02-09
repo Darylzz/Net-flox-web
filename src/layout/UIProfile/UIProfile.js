@@ -1,64 +1,69 @@
 import "./UIProfile.css";
-import { Link } from "react-router-dom";
+import "../Movie/Movie.css";
+import "../WatchListMovie/WatchList.css";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import avatarProfile from "../../asset/user-avatar.png";
-import * as movieApi from "../../api/movie-api"
+import * as movieApi from "../../api/movie-api";
 import { useState, useEffect } from "react";
-import Movie from "../Movie/Movie";
-// import useAuth from "../../hook/useAuth";
-// import { useEffect, useState } from "react";
-// import { STATUS_ME } from "../../config/constant";
-// import * as userApi from "../../api/user-api";
+import * as watchListApi from "../../api/watchList-api";
 
 export default function UIProfile() {
-  // const { authenticatedUser } = useAuth();
+  const [allMovie, setAllMovie] = useState([]);
+  const [showSearchBar, setShowSearchBar] = useState(false);
 
-  // const [transform, setTransform] = useState([]);
-  // const [profileUser, setProfileUser] = useState({});
-  // const [statusWithAuthUser, setStatusWithAuthUser] = useState(STATUS_ME);
-  // const { profileId } = useParams();
-  // const navigate = useNavigate()
+  const [watchListMovie, setWatchListMovie] = useState([]);
+  const navigate = useNavigate();
 
-  // const canAccessProfile = (user,id) => {
-  //   setTransform()
-  //   user.userId.filter(el => el.id)
-  // }
+  const { profileId } = useParams();
 
-  // // const getProfileMe = async () => {
-  // //   const res = await userApi.getUserMe()
-  // //   console.log(setTransform(res))
-  // // }
-  // // getProfileMe()
-
-  // useEffect(() => {
-  //   const fetchProfileUser = async () => {
-  //     const res = await userApi.getUserMe()
-  //     // const result = res.data.user.id
-  //     // setProfileUser(res.data.user)
-  //     const result = [...res.data.user]
-
-  //     console.log(result)
-
-  //     // console.log(result)
-  //     // console.log("------------------------------")
-  //     console.log(res.data)
-
-  //     // console.log(res.data.profile.userId, authenticatedUser.id)
-  //   };
-  //   fetchProfileUser();
-  // }, []);
-  // if(+profileUser !== +authenticatedUser.id) {
-  //   navigate("/error")
-  // }
-
-  const [allMovie, setAllMovie] = useState([])
+  const handleClickAddWatchList = async (el) => {
+    const newWatchList = structuredClone(watchListMovie);
+    // console.log(el);
+    // console.log(newWatchList[0]);
+    newWatchList.push({ Movie: el });
+    // console.log(newWatchList);
+    await watchListApi.addWatchList(profileId, el.id);
+    setWatchListMovie(newWatchList);
+    // console.log(movieId);
+  };
 
   useEffect(() => {
     const fetchAllMovie = async () => {
-      const res = await movieApi.getAllMovie()
-      setAllMovie(res.data.movie)
-    }
-    fetchAllMovie()
-  },[])
+      const res = await movieApi.getAllMovie();
+      setAllMovie(res.data.movie);
+    };
+    fetchAllMovie();
+  }, []);
+
+  useEffect(() => {
+    const fetchWatchListById = async () => {
+      const res = await watchListApi.findWatchListByProfileId(profileId);
+      // console.log(res);
+      setWatchListMovie(res.data.watchList);
+      // console.log(res.data.watchList.id)
+    };
+    fetchWatchListById();
+  }, [watchListMovie.length]);
+
+  // const handleClickDeleteWatchList = async () => {
+  const handleClickDeleteWatchList = async (deleteId, profileId) => {
+    // //---------
+    // const newWatchList = watchListMovie.filter((el) => el.id !== deleteId);
+    // console.log(newWatchList);
+    //---------
+    const res = await watchListApi.deleteWatchList(deleteId, profileId);
+    // console.log(res.data.watchListId);
+    navigate(0)
+  };  
+
+  // useEffect(() => {
+  //   const addWatchList = async () => {
+  //     const res = await watchListApi.addWatchList(profileId);
+  //     console.log(res);
+  //     setAddWatchList(res.data.watchList.watchListId);
+  //   };
+  //   addWatchList();
+  // }, []);
 
   return (
     <>
@@ -93,13 +98,25 @@ export default function UIProfile() {
             </Link>
           </div>
           <div className="UIProfileNavRight">
-            <button>
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-            <button>
-              <i class="fa-regular fa-bell"></i>
-            </button>
-            <div className="UIProfileButton">
+            <div className="UIProfileSearchBar">
+              <button onClick={() => setShowSearchBar(true)}>
+                <i class="fa-solid fa-magnifying-glass">
+                  <input
+                    className={`${
+                      showSearchBar ? "UIProfileShowSearchBar" : "v-none"
+                    }`}
+                    type="text"
+                    placeholder="Enter movie name"
+                  />
+                </i>
+              </button>
+            </div>
+            <div className="UIProfileBell">
+              <button>
+                <i class="fa-regular fa-bell"></i>
+              </button>
+            </div>
+            <div className="UIProfileButton v-none">
               <button>
                 <img src={avatarProfile} alt="" />
               </button>
@@ -110,20 +127,46 @@ export default function UIProfile() {
         <div className="UIProfileMain2">
           <h3>Watch list</h3>
           <div className="WatchListMain">
-            
-            <div className="WatchList2"></div>
-            <div className="WatchList3"></div>
-            <div className="WatchList4"></div>
-            <div className="WatchList5"></div>
+            {watchListMovie?.map((el, idx) => (
+              <div className="WatchListMovie">
+                <div>
+                  <img
+                    src={process.env.REACT_APP_URL + el.Movie.moviePic}
+                    alt=""
+                  />
+                </div>
+                <div className="WatchListMovieButton">
+                  <p>{el.Movie.movieName}</p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleClickDeleteWatchList(el.id, profileId);
+                      // console.log(el.id);
+                    }}
+                  >
+                    x
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
         <div className="UIProfileMain3">
           <h3>All Movie</h3>
           <div className="TrendingNowMain">
-          {allMovie?.map(el => <Movie key={el.id} id={el.id} image={el.moviePic} name={el.movieName} />)}
+            {allMovie?.map((el) => (
+              <div className="ShowMovie">
+                <div>
+                  <img src={process.env.REACT_APP_URL + el.moviePic} alt="" />
+                </div>
+                <div className="MovieNameButton">
+                  <p>{el.movieName}</p>
+                  <button onClick={() => handleClickAddWatchList(el)}>+</button>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="AllMovieMain">
-          </div>
+          <div className="AllMovieMain"></div>
         </div>
       </div>
     </>

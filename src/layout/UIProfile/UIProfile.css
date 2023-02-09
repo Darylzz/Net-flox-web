@@ -36,12 +36,10 @@
 .UIProfileMain2 {
     height: 280px;
     width: 100%;
-    border: 1px solid red;
 }
 .UIProfileMain3 {
     height: 560px;
     width: 100%;
-    border: 1px solid red;
 }
 .UIProfileMain2 h3 {
     color: #fff;
@@ -60,7 +58,13 @@
 .WatchListMain {
     display: flex;
     gap: 80px;
+    /* padding-top: 45px; */
     padding-left: 8.3rem;
+    overflow-x: scroll;
+    /* overflow-y: hidden; */
+}
+.WatchListMain::-webkit-scrollbar {
+    display: none;
 }
 .WatchList1 {
     height: 180px;
@@ -92,6 +96,10 @@
     padding-left: 8.3rem;
     gap: 80px;
     flex-wrap: wrap;
+    overflow-x: auto;
+}
+.TrendingNowMain::-webkit-scrollbar {
+    display: none;
 }
 .TrendingNow1 {
     height: 180px;
@@ -172,4 +180,17 @@
     height: 180px;
     width: 300px;
     border: 1px solid red;
+}
+.UIProfileShowSearchBar input {
+    padding: 0.4rem 1rem;
+    border: none;
+    border-radius: 4px;
+    visibility: visible;
+    position: fixed;
+    margin-left: -10rem;
+    margin-top: -5px;
+}
+
+.v-none {
+    visibility: hidden;
 }

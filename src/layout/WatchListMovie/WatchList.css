@@ -1,0 +1,26 @@
+.WatchListMovie {
+    height: 300px;
+    width: 300px;
+}
+.WatchListMovie img {
+    height: 180px;
+    width: 300px;
+}
+.WatchListMovieButton {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 1rem;
+}
+.WatchListMovieButton p {
+    color: #fff;
+    text-align: center;
+    padding-top: 0.3rem;
+}
+.WatchListMovieButton button {
+    padding: 0 1rem;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
