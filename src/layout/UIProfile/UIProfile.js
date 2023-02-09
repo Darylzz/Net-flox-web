@@ -2,7 +2,7 @@ import "./UIProfile.css";
 import "../Movie/Movie.css";
 import "../WatchListMovie/WatchList.css";
 import { useNavigate, useParams } from "react-router-dom";
-import avatarProfile from "../../asset/user-avatar.png";
+import {Link} from "react-router-dom"
 import * as movieApi from "../../api/movie-api";
 import * as categoryApi from "../../api/category-api";
 import { useState, useEffect } from "react";
@@ -102,30 +102,12 @@ export default function UIProfile() {
                 <button>{category.categoryName}</button>
               </div>
             ))}
-            {/* <Link style={{ textDecoration: "none", color: "#fff" }} to="/">
-              Action
-            </Link>
-            <Link style={{ textDecoration: "none", color: "#fff" }} to="/">
-              Comedy
-            </Link>
-            <Link style={{ textDecoration: "none", color: "#fff" }} to="/">
-              Romantic
-            </Link>
-            <Link style={{ textDecoration: "none", color: "#fff" }} to="/">
-              Kid
-            </Link> */}
           </div>
           <div className="UIProfileNavRight">
             <div className="UIProfileSearchBar">
-              <button onClick={() => setShowSearchBar(true)}>
+            {showSearchBar ? <input style={{padding: "10px 50px", border: "none", borderRadius: "4px", transition: "all 1s ease-out"}} type="text" placeholder="Enter your movie" /> : ""}
+              <button onClick={() => setShowSearchBar(!showSearchBar)}>
                 <i class="fa-solid fa-magnifying-glass">
-                  <input
-                    className={`${
-                      showSearchBar ? "UIProfileShowSearchBar" : "v-none"
-                    }`}
-                    type="text"
-                    placeholder="Enter movie name"
-                  />
                 </i>
               </button>
             </div>
@@ -134,10 +116,8 @@ export default function UIProfile() {
                 <i class="fa-regular fa-bell"></i>
               </button>
             </div>
-            <div className="UIProfileButton v-none">
-              <button>
-                <img src={avatarProfile} alt="" />
-              </button>
+            <div className="UIProfileButton">
+              <Link to="/profile" style={{color: "#fff", textDecoration: "none"}}>Back to profile</Link>
             </div>
           </div>
         </nav>

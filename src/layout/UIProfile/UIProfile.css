@@ -15,13 +15,11 @@
     font-size: 18px;
 }
 .UIProfileButton {
-    width: 35px;
+    width: 120px;
     height: 26px;
-}
-.UIProfileButton button img {
-    width: 35px;
-    height: 26px;
-    color: #fff;
+    text-align: center;
+    background: rgb(231, 40, 40);
+    border-radius: 8px;
 }
 .UIProfileNavRight {
     display: flex;
