@@ -1,20 +1,33 @@
 import "./UIProfile.css";
 import "../Movie/Movie.css";
 import "../WatchListMovie/WatchList.css";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import avatarProfile from "../../asset/user-avatar.png";
 import * as movieApi from "../../api/movie-api";
+import * as categoryApi from "../../api/category-api";
 import { useState, useEffect } from "react";
 import * as watchListApi from "../../api/watchList-api";
 
 export default function UIProfile() {
   const [allMovie, setAllMovie] = useState([]);
   const [showSearchBar, setShowSearchBar] = useState(false);
-
+  const [allCategory, setAllCategory] = useState([]);
   const [watchListMovie, setWatchListMovie] = useState([]);
+  const [state, setState] = useState([])
   const navigate = useNavigate();
 
   const { profileId } = useParams();
+
+  // const handleClickCategory = async (id) => {
+  //   const newClickCategory = structuredClone(allCategory)
+  //   newClickCategory.filter(el => el.id === id)
+  // }
+
+  const handleClickCategory = (id) => {
+    const newMovie = structuredClone(allMovie)
+    const movieByCategory = newMovie.filter((movie) => movie.categoryId === id);
+    setState(movieByCategory);
+  };
 
   const handleClickAddWatchList = async (el) => {
     const newWatchList = structuredClone(watchListMovie);
@@ -28,9 +41,18 @@ export default function UIProfile() {
   };
 
   useEffect(() => {
+    const fetchAllCategory = async () => {
+      const res = await categoryApi.getAllCategory();
+      setAllCategory(res.data.category);
+    };
+    fetchAllCategory();
+  }, []);
+
+  useEffect(() => {
     const fetchAllMovie = async () => {
       const res = await movieApi.getAllMovie();
       setAllMovie(res.data.movie);
+      setState(res.data.movie);
     };
     fetchAllMovie();
   }, []);
@@ -44,10 +66,9 @@ export default function UIProfile() {
   }, [watchListMovie.length]);
 
   const handleClickDeleteWatchList = async (deleteId, profileId) => {
-    const res = await watchListApi.deleteWatchList(deleteId, profileId);
-    navigate(0)
-  };  
-
+    await watchListApi.deleteWatchList(deleteId, profileId);
+    navigate(0);
+  };
 
   return (
     <>
@@ -60,6 +81,7 @@ export default function UIProfile() {
               class="svg-icon svg-icon-netflix-logo"
               aria-hidden="true"
               focusable="false"
+              onClick={() => setState(0)}
             >
               <g id="netflix-logo">
                 <path
@@ -68,7 +90,19 @@ export default function UIProfile() {
                 ></path>
               </g>
             </svg>
-            <Link style={{ textDecoration: "none", color: "#fff" }} to="/">
+            {/* {allCategory?.map((el) => (
+              <button type="button" id={el.id} onClick={()=>set(el.id)}>{el.categoryName}</button>
+            ))} */}
+            {allCategory.map((category) => (
+              <div
+                key={category.id}
+                className="category"
+                onClick={() => handleClickCategory(category.id)}
+              >
+                <button>{category.categoryName}</button>
+              </div>
+            ))}
+            {/* <Link style={{ textDecoration: "none", color: "#fff" }} to="/">
               Action
             </Link>
             <Link style={{ textDecoration: "none", color: "#fff" }} to="/">
@@ -79,7 +113,7 @@ export default function UIProfile() {
             </Link>
             <Link style={{ textDecoration: "none", color: "#fff" }} to="/">
               Kid
-            </Link>
+            </Link> */}
           </div>
           <div className="UIProfileNavRight">
             <div className="UIProfileSearchBar">
@@ -111,7 +145,7 @@ export default function UIProfile() {
         <div className="UIProfileMain2">
           <h3>Watch list</h3>
           <div className="WatchListMain">
-            {watchListMovie?.map((el, idx) => (
+            {watchListMovie?.map((el) => (
               <div className="WatchListMovie">
                 <div>
                   <img
@@ -138,7 +172,7 @@ export default function UIProfile() {
         <div className="UIProfileMain3">
           <h3>All Movie</h3>
           <div className="TrendingNowMain">
-            {allMovie?.map((el) => (
+            {state === 0 ? allMovie.map((el) => (
               <div className="ShowMovie">
                 <div>
                   <img src={process.env.REACT_APP_URL + el.moviePic} alt="" />
@@ -148,6 +182,18 @@ export default function UIProfile() {
                   <button onClick={() => handleClickAddWatchList(el)}>+</button>
                 </div>
               </div>
+            )) : state.map((el) => (
+              (
+                <div className="ShowMovie">
+                  <div>
+                    <img src={process.env.REACT_APP_URL + el.moviePic} alt="" />
+                  </div>
+                  <div className="MovieNameButton">
+                    <p>{el.movieName}</p>
+                    <button onClick={() => handleClickAddWatchList(el)}>+</button>
+                  </div>
+                </div>
+              )
             ))}
           </div>
           <div className="AllMovieMain"></div>

@@ -7,6 +7,13 @@
     display: flex;
     gap: 1.5rem;
 }
+.UIProfileNavLeft button {
+    color: white;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+}
 .UIProfileButton {
     width: 35px;
     height: 26px;
