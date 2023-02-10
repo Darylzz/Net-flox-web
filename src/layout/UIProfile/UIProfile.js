@@ -2,7 +2,7 @@ import "./UIProfile.css";
 import "../Movie/Movie.css";
 import "../WatchListMovie/WatchList.css";
 import { useNavigate, useParams } from "react-router-dom";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import * as movieApi from "../../api/movie-api";
 import * as categoryApi from "../../api/category-api";
 import { useState, useEffect } from "react";
@@ -13,7 +13,9 @@ export default function UIProfile() {
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [allCategory, setAllCategory] = useState([]);
   const [watchListMovie, setWatchListMovie] = useState([]);
-  const [state, setState] = useState([])
+  const [state, setState] = useState([]);
+  const [showMoviePanel,setShowMoviePanel] = useState(false)
+  const [searchMovie, setSearchMovie] = useState("");
   const navigate = useNavigate();
 
   const { profileId } = useParams();
@@ -24,10 +26,27 @@ export default function UIProfile() {
   // }
 
   const handleClickCategory = (id) => {
-    const newMovie = structuredClone(allMovie)
+    const newMovie = structuredClone(allMovie);
     const movieByCategory = newMovie.filter((movie) => movie.categoryId === id);
     setState(movieByCategory);
   };
+
+  // const handleChangeInputSearchMovie = (e) => {
+  //   setSearchMovie(e.target.value);
+  // };
+
+  // useEffect(() => {
+  //   if (searchMovie !== "") {
+  //     const timeOutSearch = setTimeout(() => {
+  //       const findMovieByName = async () => {
+  //         console.log(state)
+  //         await movieApi.searchMovieByName(state.length)
+  //       }
+  //       findMovieByName()
+  //   },3000)
+  //     return () => clearTimeout(timeOutSearch)
+  //   }
+  // },[searchMovie])
 
   const handleClickAddWatchList = async (el) => {
     const newWatchList = structuredClone(watchListMovie);
@@ -105,10 +124,23 @@ export default function UIProfile() {
           </div>
           <div className="UIProfileNavRight">
             <div className="UIProfileSearchBar">
-            {showSearchBar ? <input style={{padding: "10px 50px", border: "none", borderRadius: "4px", transition: "all 1s ease-out"}} type="text" placeholder="Enter your movie" /> : ""}
+              {showSearchBar ? (
+                <input
+                  onChange={(e) => setSearchMovie(e.target.value)}
+                  style={{
+                    padding: "10px 50px",
+                    border: "none",
+                    borderRadius: "4px",
+                    transition: "all 1s ease-out",
+                  }}
+                  type="text"
+                  placeholder="Enter your movie"
+                />
+              ) : (
+                ""
+              )}
               <button onClick={() => setShowSearchBar(!showSearchBar)}>
-                <i class="fa-solid fa-magnifying-glass">
-                </i>
+                <i class="fa-solid fa-magnifying-glass"></i>
               </button>
             </div>
             <div className="UIProfileBell">
@@ -117,7 +149,12 @@ export default function UIProfile() {
               </button>
             </div>
             <div className="UIProfileButton">
-              <Link to="/profile" style={{color: "#fff", textDecoration: "none"}}>Back to profile</Link>
+              <Link
+                to="/profile"
+                style={{ color: "#fff", textDecoration: "none" }}
+              >
+                Back to profile
+              </Link>
             </div>
           </div>
         </nav>
@@ -127,7 +164,9 @@ export default function UIProfile() {
           <div className="WatchListMain">
             {watchListMovie?.map((el) => (
               <div className="WatchListMovie">
-                <div>
+                <div onClick={() => setShowMoviePanel(true)}>
+                {showMoviePanel ? <iframe width="560" height="315" src="https://www.youtube.com/embed/b9EkMc79ZSU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> : ""}
+
                   <img
                     src={process.env.REACT_APP_URL + el.Movie.moviePic}
                     alt=""
@@ -152,29 +191,42 @@ export default function UIProfile() {
         <div className="UIProfileMain3">
           <h3>All Movie</h3>
           <div className="TrendingNowMain">
-            {state === 0 ? allMovie.map((el) => (
-              <div className="ShowMovie">
-                <div>
-                  <img src={process.env.REACT_APP_URL + el.moviePic} alt="" />
-                </div>
-                <div className="MovieNameButton">
-                  <p>{el.movieName}</p>
-                  <button onClick={() => handleClickAddWatchList(el)}>+</button>
-                </div>
-              </div>
-            )) : state.map((el) => (
-              (
-                <div className="ShowMovie">
-                  <div>
-                    <img src={process.env.REACT_APP_URL + el.moviePic} alt="" />
+            {state === 0
+              ? allMovie.map((el) => (
+                  <div className="ShowMovie">
+                    <div onClick={() => setShowMoviePanel(true)}>
+                    {showMoviePanel ? <iframe width="560" height="315" src="https://www.youtube.com/embed/b9EkMc79ZSU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> : ""}
+
+                      <img
+                        src={process.env.REACT_APP_URL + el.moviePic}
+                        alt=""
+                      />
+                    </div>
+                    <div className="MovieNameButton">
+                      <p>{el.movieName}</p>
+                      <button onClick={() => handleClickAddWatchList(el)}>
+                        +
+                      </button>
+                    </div>
                   </div>
-                  <div className="MovieNameButton">
-                    <p>{el.movieName}</p>
-                    <button onClick={() => handleClickAddWatchList(el)}>+</button>
+                ))
+              : state.map((el) => (
+                  <div className="ShowMovie">
+                    <div onClick={() => setShowMoviePanel(true)}>
+                      {showMoviePanel ? <iframe width="560" height="315" src="https://www.youtube.com/embed/b9EkMc79ZSU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> : ""}
+                      <img
+                        src={process.env.REACT_APP_URL + el.moviePic}
+                        alt=""
+                      />
+                    </div>
+                    <div className="MovieNameButton">
+                      <p>{el.movieName}</p>
+                      <button onClick={() => handleClickAddWatchList(el)}>
+                        +
+                      </button>
+                    </div>
                   </div>
-                </div>
-              )
-            ))}
+                ))}
           </div>
           <div className="AllMovieMain"></div>
         </div>
