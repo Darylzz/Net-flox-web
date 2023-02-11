@@ -1,8 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Admin.css"
 import AdminModal from "./AdminModal";
+import * as movieApi from "../../api/movie-api"
 export default function Admin() {
     const [isAdminButtonInput, setIsAdminButtonInput] = useState(false)
+    const [adminShowMovie, setAdminShowMovie] = useState([])
+    const [adminShowMoviePanel, setAdminShowMoviePanel] = useState(false)
+
+    useEffect(() => {
+      const fetchShowAllMovieAdmin = async () => {
+        const res = await movieApi.getAllMovie()
+        setAdminShowMovie(res.data.movie)
+      }
+      fetchShowAllMovieAdmin()
+    }, [])
+    
   return (
     <>
       <div className="AdminCon">
@@ -28,6 +40,38 @@ export default function Admin() {
             </div>
         </nav>
         <AdminModal isAdminButtonInput={isAdminButtonInput} onClose={() => setIsAdminButtonInput(false)} />
+        <div className="UIAdminShowMovieMain">
+          <h3>All movie</h3>
+          <div className="AdminShowAllMovie">
+            <div>
+              {adminShowMovie?.map((el) => {
+                <div>
+                  {adminShowMoviePanel ? (
+                          <iframe
+                          width="320"
+                          height="180"
+                          src={el.movieTrailer}
+                          title="YouTube video player"
+                          frameborder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowfullscreen
+                        ></iframe>
+                      ) : (
+                        <img
+                        src={process.env.REACT_APP_URL + el.moviePic}
+                        alt=""
+                      />
+                  )}
+                  <div className="AdminShowMovieButton">
+                    <p>{el.movieName}</p>
+                    <button onClick={() => setAdminShowMoviePanel(!adminShowMoviePanel)}>Show trailer</button>
+                    <button>Delete</button>
+                  </div>
+                </div>
+              })}
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

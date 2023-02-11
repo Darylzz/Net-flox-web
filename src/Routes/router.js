@@ -55,3 +55,54 @@ const router = createBrowserRouter([
 export default function Router() {
     return <RouterProvider router={router} />
 }
+
+
+// const Router = () => {
+    
+//     const {authUser} = useContext(AuthContext)
+//     const router = createBrowserRouter([
+//         {
+//             path: "/",
+//             element: <Home />
+//         },
+//         {
+//             path: "/register",
+//             element: <Register />
+//         },
+//         {
+//             path: "/login",
+//             element: (
+//                 <RedirectIfAuthenticate>
+//                     <SignIn />
+//                 </RedirectIfAuthenticate>
+//             )
+//         },
+//         {
+//             path: "/profile",
+//             element: (
+//                 <ProtectedRoute>
+//                     <Profile />
+//                 </ProtectedRoute>
+//             ),
+//         },
+//         {
+//             path: "/profile/:profileId",
+//             element: (
+//                 <ProtectedRoute>
+//                     <UIProfile />
+//                 </ProtectedRoute>
+//             )
+//         },
+//         {
+//             path: "/admin",
+//             element: (
+//                 <ProtectedRoute>
+//                     {authUser && authUser.role === "user" && <Admin />}
+//                 </ProtectedRoute>
+//             )
+//         }
+    
+//     ])
+//     return <RouterProvider router={router} />
+// }
+// export default Router

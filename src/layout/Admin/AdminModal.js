@@ -1,39 +1,42 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as movieApi from "../../api/movie-api"
+import * as movieApi from "../../api/movie-api";
 import "./AdminModal.css";
 export default function AdminModal({ isAdminButtonInput, onClose }) {
+  const navigate = useNavigate;
 
-    const navigate = useNavigate
-    
   const [inputCreateMovie, setInputCreateMovie] = useState({
-    movieName: "",
-    movieDes: "",
-    movieLink: "",
     moviePic: "",
+    movieDes: "",
+    movieName: "",
+    movieTrailer: "",
   });
 
   const handleOnChangeAdminCreate = (e) => {
-    setInputCreateMovie({ ...inputCreateMovie, [e.target.name]: e.target.value})
-  }
+    setInputCreateMovie({
+      ...inputCreateMovie,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmitCreateMovie = async (e) => {
-    e.preventDefault()
-    const formData = new FormData()
-    formData.append("movieName", inputCreateMovie.movieName)
-    formData.append("movieDes", inputCreateMovie.movieDes)
-    formData.append("movieLink", inputCreateMovie.movieLink)
-    formData.append("moviePic", inputCreateMovie.moviePic)
-    await movieApi.createMovie(formData)
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("movieName", inputCreateMovie.movieName);
+    formData.append("movieDes", inputCreateMovie.movieDes);
+    formData.append("movieTrailer", inputCreateMovie.movieTrailer);
+    formData.append("moviePic", inputCreateMovie.moviePic);
+    await movieApi.createMovie(formData);
     setInputCreateMovie({
-        movieName: "",
-        movieDes: "",
-        movieLink: "",
-        moviePic: "",
-    })
-    navigate(0)
-    onClose()
-  }
+      moviePic: "",
+      movieDes: "",
+      movieName: "",
+      movieTrailer: "",
+    });
+    navigate(0);
+    onClose();
+  };
+
 
   return (
     <div
@@ -69,8 +72,8 @@ export default function AdminModal({ isAdminButtonInput, onClose }) {
           <label>Movie link</label>
           <br />
           <input
-            name="movieLink"
-            value={inputCreateMovie.movieLink}
+            name="movieTrailer"
+            value={inputCreateMovie.movieTrailer}
             type="text"
             placeholder="Enter movie link"
             onChange={handleOnChangeAdminCreate}
@@ -82,7 +85,7 @@ export default function AdminModal({ isAdminButtonInput, onClose }) {
               if (e.target.files[0]) {
                 setInputCreateMovie({
                   ...inputCreateMovie,
-                  file: e.target.files[0],
+                  moviePic: e.target.files[0],
                 });
               }
             }}
