@@ -14,7 +14,9 @@ export default function UIProfile() {
   const [allCategory, setAllCategory] = useState([]);
   const [watchListMovie, setWatchListMovie] = useState([]);
   const [state, setState] = useState([]);
-  const [showMoviePanel,setShowMoviePanel] = useState(false)
+  const [showMoviePanelWatchList, setShowMoviePanelWatchList] = useState(false);
+  const [showMoviePanel, setShowMoviePanel] = useState(false)
+  const [showMoviePanelAllMovie, setShowMoviePanelAllMovie] = useState(false)
   const [searchMovie, setSearchMovie] = useState("");
   const navigate = useNavigate();
 
@@ -164,21 +166,34 @@ export default function UIProfile() {
           <div className="WatchListMain">
             {watchListMovie?.map((el) => (
               <div className="WatchListMovie">
-                <div onClick={() => setShowMoviePanel(true)}>
-                {showMoviePanel ? <iframe width="560" height="315" src="https://www.youtube.com/embed/b9EkMc79ZSU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> : ""}
-
-                  <img
+                <div>
+                  {showMoviePanelWatchList ? (
+                    <>
+                    <iframe
+                      width="320"
+                      height="180"
+                      src={el.Movie.movieTrailer}
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen
+                    ></iframe>
+                    
+                    </>
+                  ) : (
+                    <img
                     src={process.env.REACT_APP_URL + el.Movie.moviePic}
                     alt=""
                   />
+                  )}
                 </div>
                 <div className="WatchListMovieButton">
                   <p>{el.Movie.movieName}</p>
+                  <button style={{fontSize: "16px"}} onClick={() => setShowMoviePanelWatchList(!showMoviePanelWatchList)}>Show Trailer</button>
                   <button
                     type="button"
                     onClick={() => {
                       handleClickDeleteWatchList(el.id, profileId);
-                      // console.log(el.id);
                     }}
                   >
                     x
@@ -194,16 +209,27 @@ export default function UIProfile() {
             {state === 0
               ? allMovie.map((el) => (
                   <div className="ShowMovie">
-                    <div onClick={() => setShowMoviePanel(true)}>
-                    {showMoviePanel ? <iframe width="560" height="315" src="https://www.youtube.com/embed/b9EkMc79ZSU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> : ""}
-
-                      <img
+                    <div>
+                      {showMoviePanelAllMovie ? (
+                        <iframe
+                          width="320"
+                          height="180"
+                          src={el.movieTrailer}
+                          title="YouTube video player"
+                          frameborder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowfullscreen
+                        ></iframe>
+                      ) : (
+                        <img
                         src={process.env.REACT_APP_URL + el.moviePic}
                         alt=""
                       />
+                      )}
                     </div>
                     <div className="MovieNameButton">
                       <p>{el.movieName}</p>
+                      <button style={{fontSize: "16px", paddingBottom: "6px"}} onClick={() => setShowMoviePanelAllMovie(!showMoviePanelAllMovie)}>Show trailer</button>
                       <button onClick={() => handleClickAddWatchList(el)}>
                         +
                       </button>
@@ -212,15 +238,27 @@ export default function UIProfile() {
                 ))
               : state.map((el) => (
                   <div className="ShowMovie">
-                    <div onClick={() => setShowMoviePanel(true)}>
-                      {showMoviePanel ? <iframe width="560" height="315" src="https://www.youtube.com/embed/b9EkMc79ZSU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> : ""}
-                      <img
+                    <div>
+                      {showMoviePanel ? (
+                        <iframe
+                          width="320"
+                          height="180"
+                          src={el.movieTrailer}
+                          title="YouTube video player"
+                          frameborder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowfullscreen
+                        ></iframe>
+                      ) : (
+                        <img
                         src={process.env.REACT_APP_URL + el.moviePic}
                         alt=""
                       />
+                      )}
                     </div>
                     <div className="MovieNameButton">
                       <p>{el.movieName}</p>
+                      <button style={{fontSize: "16px", paddingBottom: "6px"}} onClick={() => setShowMoviePanel(!showMoviePanel)}>Show trailer</button>
                       <button onClick={() => handleClickAddWatchList(el)}>
                         +
                       </button>
