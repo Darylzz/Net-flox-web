@@ -4,9 +4,12 @@ import Register from "../layout/Register/Register"
 import SignIn from "../layout/Sign in/SignIn"
 import RedirectIfAuthenticate from "../auth/RedirectIfAuthenticate"
 import Profile from "../layout/Profile/Profile"
+import Admin from "../layout/Admin/Admin"
 import ProtectedRoute from "../auth/ProtectedRoute"
 import UIProfile from "../layout/UIProfile/UIProfile"
- 
+// import useAuth from "../hook/useAuth"
+
+// const {authUser} = useAuth()
 const router = createBrowserRouter([
     {
         path: "/",
@@ -39,10 +42,16 @@ const router = createBrowserRouter([
                 <UIProfile />
             </ProtectedRoute>
         )
+    },
+    {
+        path: "/admin",
+        element: <Admin />
+        // authUser?.role === "admin" (
+        //     <Admin />
+        // )
     }
 
 ])
-
 export default function Router() {
     return <RouterProvider router={router} />
 }

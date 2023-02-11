@@ -1,0 +1,11 @@
+.AdminCon{
+    height: 3000px;
+    width: 100vw;
+    background: #000;
+}
+.AdminNavRight button {
+    font-size: 40px;
+    color: #fff;
+    background: transparent;
+    border: none;
+}

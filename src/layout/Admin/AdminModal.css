@@ -1,0 +1,41 @@
+.AdminModal {
+    height: 600px;
+    width: 60%;
+    background: #000;
+    visibility: visible;
+    transition: all 1.5s ease-out;
+    left: 40%;
+}
+.transition *{
+    transition: all 3s ease-out;
+}
+.AdminModalFixed {
+    position: fixed;
+}
+.AdminModal-none {
+    visibility: hidden;
+}
+.AdminModalInput label {
+    color: #fff;
+}
+.AdminModalText h1 {
+    color: #fff;
+}
+.AdminModalInputButton {
+    display: flex;
+    padding-top: 2rem;
+    gap: 12px;
+}
+.AdminModalInputButton button {
+    padding: 0.5rem 3rem;
+    border: 1px solid #fff;
+    color: #fff;
+    background: transparent;
+    border-radius: 8px;
+}
+.AdminModalInput {
+    padding: 1rem;
+}
+.AdminModalInput input[type=text] {
+    padding: 0.5rem 3rem;
+}
