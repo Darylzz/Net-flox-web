@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./Admin.css";
 import AdminModal from "./AdminModal";
 import * as movieApi from "../../api/movie-api";
+import { Navigate } from "react-router-dom";
 export default function Admin() {
   const [isAdminButtonInput, setIsAdminButtonInput] = useState(false);
   const [adminShowMovie, setAdminShowMovie] = useState([]);
@@ -13,7 +14,12 @@ export default function Admin() {
       setAdminShowMovie(res.data.movie);
     };
     fetchShowAllMovieAdmin();
-  }, [adminShowMovie]);
+  }, []);
+
+  const handleDeleteMovie = async (movieId) => {
+    await movieApi.deleteMovie(movieId)
+    Navigate(0)
+  }
 
   return (
     <>
@@ -62,7 +68,7 @@ export default function Admin() {
                     ></iframe>
                   </>
                 ) : (
-                  <img src={process.env.REACT_APP_URL + el.moviePic} />
+                  <img src={process.env.REACT_APP_URL + el.moviePic} alt="" />
                 )}
                 <div className="AdminShowAllMovieButton">
                   <p>{el.movieName}</p>
@@ -71,7 +77,7 @@ export default function Admin() {
                   >
                     Show trailer
                   </button>
-                  <button>Delete</button>
+                  <button onClick={() => handleDeleteMovie(el.id)}>Delete</button>
                 </div>
               </div>
             </div>
