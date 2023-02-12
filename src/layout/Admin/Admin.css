@@ -10,7 +10,6 @@
     border: none;
 }
 .UIAdminShowMovieMain {
-    border: 1px solid red;
     height: 100vh;
     width: 100%;
 }
@@ -18,17 +17,40 @@
     color: #fff;
     padding: 1rem 4rem;
 }
+.UIAdminShowMovie {
+    display: flex;
+    gap: 80px;
+    padding-left: 8.3rem;
+    height: 230px;
+    flex-wrap: wrap;
+}
 .AdminShowAllMovie {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 80px;
+    height: 230px;
+}
+.AdminShowAllMoviePanel {
+    width: 320px;
+    height: 180px;
+}
+.AdminShowAllMoviePanel img {
+    width: 320px;
+    height: 180px;
+}
+.AdminShowAllMovieButton {
+    display: flex;
+    justify-content: space-evenly;
 }
 .AdminShowAllMovieButton p {
     color: #fff;
+    padding: 0.5rem 1rem;
 }
 .AdminShowAllMovieButton button {
-
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    cursor: pointer;
 }
-

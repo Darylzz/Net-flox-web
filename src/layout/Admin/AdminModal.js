@@ -33,7 +33,6 @@ export default function AdminModal({ isAdminButtonInput, onClose }) {
       movieName: "",
       movieTrailer: "",
     });
-    navigate(0);
     onClose();
   };
 
