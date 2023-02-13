@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import "./Admin.css";
 import AdminModal from "./AdminModal";
 import * as movieApi from "../../api/movie-api";
-import { Navigate } from "react-router-dom";
+import ShowMovie from "../ShowMovie/ShowMovieAdmin";
+import useAuth from "../../hook/useAuth";
 export default function Admin() {
+  const {logout} = useAuth()
   const [isAdminButtonInput, setIsAdminButtonInput] = useState(false);
   const [adminShowMovie, setAdminShowMovie] = useState([]);
-  const [adminShowMoviePanel, setAdminShowMoviePanel] = useState(false);
 
   useEffect(() => {
     const fetchShowAllMovieAdmin = async () => {
@@ -15,11 +16,6 @@ export default function Admin() {
     };
     fetchShowAllMovieAdmin();
   }, []);
-
-  const handleDeleteMovie = async (movieId) => {
-    await movieApi.deleteMovie(movieId)
-    Navigate(0)
-  }
 
   return (
     <>
@@ -41,6 +37,7 @@ export default function Admin() {
               </g>
             </svg>
           </div>
+            <button style={{fontSize: "18px", marginLeft: "1200px", padding: "0 2rem", background: "red", border: "none", borderRadius: "8px", color: "#fff"}} onClick={logout}>Logout</button>
           <div className="AdminNavRight">
             <button onClick={() => setIsAdminButtonInput(true)}>+</button>
           </div>
@@ -55,30 +52,7 @@ export default function Admin() {
           {adminShowMovie?.map((el) => (
             <div className="AdminShowAllMovie">
               <div className="AdminShowAllMoviePanel">
-                {adminShowMoviePanel ? (
-                  <>
-                    <iframe
-                      width="320"
-                      height="180"
-                      src={el.movieTrailer}
-                      title="YouTube video player"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowfullscreen
-                    ></iframe>
-                  </>
-                ) : (
-                  <img src={process.env.REACT_APP_URL + el.moviePic} alt="" />
-                )}
-                <div className="AdminShowAllMovieButton">
-                  <p>{el.movieName}</p>
-                  <button
-                    onClick={() => setAdminShowMoviePanel(!adminShowMoviePanel)}
-                  >
-                    Show trailer
-                  </button>
-                  <button onClick={() => handleDeleteMovie(el.id)}>Delete</button>
-                </div>
+                <ShowMovie key={el.id} iFrame={el.movieTrailer} image={el.moviePic} name={el.movieName} id={el.id} />
               </div>
             </div>
           ))}
