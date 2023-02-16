@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as movieApi from "../../api/movie-api"
 
 export default function ShowMovie({ iFrame, name, image,id }) {
+  const navigate = useNavigate()
   const [showMoviePanel, setShowMoviePanel] = useState(false)
 
   const handleDeleteMovie = async (movieId) => {
     await movieApi.deleteMovie(movieId)
-    Navigate(0)
+    navigate(0)
   }
   
   return (

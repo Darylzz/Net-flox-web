@@ -21,7 +21,7 @@ export default function ShowMovieCategory({ categoryIframe, categoryImage, categ
       </div>
       <div style={{width: "200px", display: "flex", gap: "60px", paddingTop: "1rem"}}>
       <p style={{color: "#fff"}}>{categoryName}</p>
-      <button style={{fontSize: "16px", border: "none", color: "#fff", background: "transparent", cursor: "pointer"}} onClick={() => setToggleShowMovieCategory(!toggleShowMovieCategory)}>Show trailer</button>
+      <button style={{fontSize: "20px", border: "none", color: "#fff", background: "transparent", cursor: "pointer"}} onClick={() => setToggleShowMovieCategory(!toggleShowMovieCategory)}>Show trailer</button>
       </div>
     </>
   );

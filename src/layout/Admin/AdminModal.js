@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as movieApi from "../../api/movie-api";
 import "./AdminModal.css";
 export default function AdminModal({ isAdminButtonInput, onClose }) {
+  const navigate = useNavigate()
 
   const [inputCreateMovie, setInputCreateMovie] = useState({
     moviePic: "",
@@ -32,6 +34,7 @@ export default function AdminModal({ isAdminButtonInput, onClose }) {
       movieTrailer: "",
     });
     onClose();
+    navigate(0)
   };
 
 
